@@ -11,8 +11,19 @@ from pathlib import Path
 import pyaudio
 import config       
 
-openapi_key = config.openai.api_key
-eleven_lab = config.elevenlabs.api_key
+# openapi_key = config.openai.api_key
+# eleven_lab = config.elevenlabs.api_key
+
+
+load_dotenv()
+# eleven_lab = os.getenv("ELEVENLAB")
+# openapi_key = os.getenv("OPENAPI")
+openapi_key = st.secrets["open_ai_key"]
+eleven_lab = st.secrets["elevenlabs_key"]
+
+set_api_key(eleven_lab)
+openai.api_key = openapi_key
+os.environ["OPENAI_API_KEY"] = openapi_key
 
 st.markdown("<h1 style='text-align: center; color: green;'>Virtual Assistant</h1>", unsafe_allow_html=True)
 st.markdown("<h2 style='text-align: center; color: lightgreen; font-size: smaller;'>Get expert medical advice and diagnosis from the comfort with our Virtual General Physician service.</h2>", unsafe_allow_html=True)
